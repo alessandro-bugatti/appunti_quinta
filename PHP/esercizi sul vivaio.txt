@@ -9,5 +9,10 @@ Il cliente Garibaldo ha appena telefonato per lamentarsi dell'intervento fatto n
 Si vuole un elenco di tutto il personale, con nome e cognome, che è 
 responsabile di almeno due specie.
 
-Si vuole l'elenco di tutti i clienti che per gli interventi richiesti abbiano utilizzato degli esemplari di piante di tipologia "grande"
+Si vuole l'elenco di tutti i clienti che per gli interventi richiesti abbiano 
+utilizzato degli esemplari di piante di tipologia "grande"
+
+Trovare il nominativo, la data di effettuazione e il costo dell'intervento più
+costoso considerando come costo il solo costo degli esemplari usati per 
+quell'intervento
 
