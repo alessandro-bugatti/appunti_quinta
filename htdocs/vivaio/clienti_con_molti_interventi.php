@@ -74,7 +74,6 @@ se non esiste già qualcosa, in questo caso una funzione di libreria
 che fornisca già il risultato desiderato
 */
 
-
 $risultato = array();
 
 foreach ($conteggio as $key => $value) {
