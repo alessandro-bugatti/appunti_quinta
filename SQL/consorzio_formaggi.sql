@@ -38,7 +38,43 @@ WHERE forme_vendute = (SELECT MAX(forme_vendute)
                         AND scelta = "prima"
                         AND YEAR(data) = :anno_scelto 
                         GROUP BY caseficio.codice) AS tabella_A)
+                        
+-- Primo modo per semplificare la query precedente
+-- utilizzando una vista
+CREATE VIEW tabella_A AS
+SELECT caseificio.nome, caseficio.indirizzo, COUNT(*) AS forme_vendute
+FROM caseificio, forma
+WHERE caseficio.codice = forma.codice_caseificio
+AND scelta = "prima"
+AND YEAR(data) = :anno_scelto 
+GROUP BY caseficio.codice
 
+SELECT caseficio.nome, caseficio.indirizzo, forme_vendute
+FROM tabella_A
+WHERE forme_vendute = (SELECT MAX(forme_vendute)
+                        FROM tabella_A)
+
+SELECT caseficio.nome, caseficio.indirizzo, forme_vendute
+FROM tabella_A
+WHERE forme_vendute = (SELECT MIN(forme_vendute)
+                        FROM tabella_A)
+
+
+-- Secondo modo per semplificare la query
+-- utilizzando una tabella temporanea
+-- che dura soltanto all'interno della sessione
+CREATE TEMPORARY TABLE tabella_A 
+SELECT caseificio.nome, caseficio.indirizzo, COUNT(*) AS forme_vendute
+FROM caseificio, forma
+WHERE caseficio.codice = forma.codice_caseificio
+AND scelta = "prima"
+AND YEAR(data) = :anno_scelto 
+GROUP BY caseficio.codice
+
+SELECT caseficio.nome, caseficio.indirizzo, forme_vendute
+FROM tabella_A
+WHERE forme_vendute = (SELECT MAX(forme_vendute)
+                        FROM tabella_A)
 
 
 
