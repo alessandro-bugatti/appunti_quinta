@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+</head>
+<body>
+    <h1>Portale prenotazioni</h1>
+    <p>Inserisci i tuoi dati per prenotare un tampone</p>
+    <form action="prenota.php" method="post">
+        <fieldset>
+            <legend>Inserisci la prenotazione</legend>
+            <label for="codice">Codice fiscale</label>
+            <input type="text" id="codice" placeholder="Codice fiscale" name="codice">
+            <label for="giorno">Giorno</label>
+            <input type="text" id="giorno" placeholder="Giorno scelto" name="giorno">
+            <input type="submit" value="Invia la tua richiesta">
+        </fieldset>
+    </form>
+</body>
+</html>
