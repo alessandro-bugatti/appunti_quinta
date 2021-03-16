@@ -1,28 +1,23 @@
 <?php
 
-//Dice a livello dello script che gli errori verranno mostrati
-//e che non verranno loggati
-ini_set('display_errors', 1);
-ini_set('log_errors', 0);
+require 'vendor/autoload.php';
+include_once 'config.php';
 
-$host = 'localhost';
-$db = 'tamponi';
-$user = 'root';
-$pass = '';
+use League\Plates\Engine;
 
-//Stringa di connessione
-$dsn = 'mysql:host=' . $host . ';dbname=' . $db;
+//Viene creato l'oggetto per la gestione dei template
+$templates = new Engine('./view','tpl');
 
-
-$pdo = new PDO($dsn, $user, $pass);
-
-//Query di inserimento preparata
+//Query per recuperare tutte le prenotazioni
 $sql = "SELECT * FROM prenotazioni";
 
+//Invio la query al server MySQL
 $stmt = $pdo->query($sql);
 
+//Estraggo le righe di risposta che finiranno come vettori in $result
 $result = $stmt->fetchAll();
 
-echo "<pre>";
-var_dump($result);
-echo "</pre>";
+
+
+//Rendo un template che mi visualizza la tabella
+echo $templates->render('lista_prenotazioni', ['result' => $result]);
