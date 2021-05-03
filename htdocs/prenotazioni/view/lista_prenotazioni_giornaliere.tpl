@@ -1,4 +1,4 @@
-<?php $this->layout('main',['argomento' => 'Lista di tutte le prenotazioni']); ?>
+<?php $this->layout('main',['argomento' => 'Lista delle prenotazioni giornaliere']); ?>
 
 <h5>Stai accedendo come <mark><?=$username?></mark></h5>
 <table class="striped">
@@ -6,7 +6,6 @@
     <thead>
     <tr>
         <th>Codice fiscale</th>
-        <th>Data</th>
         <th>Codice univoco</th>
     </tr>
     </thead>
@@ -14,7 +13,6 @@
         <?php foreach($result as $row): ?>
         <tr>
             <td><?php echo $row['codice_fiscale'] ?></td>
-            <td><?php echo $row['giorno'] ?></td>
             <td><?php echo $row['codice_univoco'] ?></td>
         </tr>
         <?php endforeach ?>

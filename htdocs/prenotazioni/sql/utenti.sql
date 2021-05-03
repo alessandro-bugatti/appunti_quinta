@@ -16,19 +16,19 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `prenotazioni`
+-- Table structure for table `utenti`
 --
 
-DROP TABLE IF EXISTS `prenotazioni`;
+DROP TABLE IF EXISTS `utenti`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `prenotazioni` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `codice_fiscale` varchar(16) NOT NULL,
-  `giorno` date NOT NULL,
-  `codice_univoco` varchar(64) DEFAULT NULL,
-  `eseguito` tinyint(1) NOT NULL DEFAULT 0,
-  `note` text DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+CREATE TABLE `utenti` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `utenti_username_uindex` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Dump completed on 2021-04-10 11:10:38

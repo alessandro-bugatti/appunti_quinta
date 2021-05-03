@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+</head>
+<body>
+    <h1>Esegui tampone</h1>
+    <p>Inserisci il codice dell'utente</p>
+    <form action="esegui.php" method="post">
+        <fieldset>
+            <legend>Inserisci le informazioni</legend>
+            <label for="codice">Codice univoco</label>
+            <input type="text" id="codice" placeholder="Codice univoco" name="codice">
+            <label for="note">Note</label>
+            <textarea id="note" placeholder="Note" name="note"></textarea>
+            <input type="submit" value="Registra il tampone">
+        </fieldset>
+    </form>
+</body>
+</html>

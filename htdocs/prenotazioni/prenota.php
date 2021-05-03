@@ -1,5 +1,6 @@
 <?php
 
+require 'vendor/autoload.php';
 include_once "config.php";
 
 /**
@@ -14,32 +15,57 @@ function crea_codice(int $length)
     return $codice;
 }
 
+use League\Plates\Engine;
+
+//Viene creato l'oggetto per la gestione dei template
+$templates = new Engine('./view','tpl');
+
 //Variabili valorizzate tramite POST
 $codice_fiscale = $_POST['codice'];
 $giorno = $_POST['giorno'];
 $codice_univoco = crea_codice($LUNGHEZZA_CODICE);
 
-//Query di inserimento preparata
-$sql = "INSERT INTO prenotazioni VALUES(null, :codice_fiscale, :giorno, 
-                                :codice_univoco)";
+//Controllo sul numero di persone per giorno
+$sql = "SELECT COUNT(*) AS persone FROM prenotazioni WHERE giorno = :giorno_scelto";
 
 //Inviamo la query al database che la tiene in pancia
 $stmt = $pdo->prepare($sql);
 
-//Inviamo i dati conreti che verranno messi al posto dei segnaposto
 $stmt->execute(
     [
-        'codice_fiscale' => $codice_fiscale,
-        'giorno' => $giorno,
-        'codice_univoco' => $codice_univoco
+        'giorno_scelto' => $giorno
     ]
 );
 
-//Ridirige il browser verso la pagina indicata nella location
-//Serve come modo diretto per vedere attraverso il browser che la pagina
-//ha effettivamente prodotto un risultato
+$riga = $stmt->fetch();
 
-//Reindirizza alla pagine che fornisce un codice univoco all'utente
-header('Location:mostra_codice.php?codice=' . $codice_univoco);
+$numero_persone = $riga['persone'];
+
+if ($numero_persone >= $PERSONE_MASSIME_PER_GIORNO)
+{
+    echo $templates->render('data_non_disponibile', ['giorno' => $giorno]);
+}
+else
+{
+    //Query di inserimento preparata
+    $sql = "INSERT INTO prenotazioni VALUES(null, :codice_fiscale, :giorno, 
+                                :codice_univoco,false,null)";
+
+    //Inviamo la query al database che la tiene in pancia
+    $stmt = $pdo->prepare($sql);
+
+    //Inviamo i dati concreti che verranno messi al posto dei segnaposto
+    $stmt->execute(
+        [
+            'codice_fiscale' => $codice_fiscale,
+            'giorno' => $giorno,
+            'codice_univoco' => $codice_univoco
+        ]
+    );
+
+    echo $templates->render('mostra_codice', ['codice_univoco' => $codice_univoco]);
+
+}
+
 
 

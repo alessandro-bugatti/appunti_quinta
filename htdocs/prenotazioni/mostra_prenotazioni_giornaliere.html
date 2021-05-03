@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prenotazioni</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+</head>
+<body>
+    <h1>Portale prenotazioni</h1>
+    <p>Scegli l'intervallo per visualizzare le prenotazioni giornaliere</p>
+    <form action="grafico_prenotazioni.php" method="post">
+        <fieldset>
+            <legend>Data inizio e fine</legend>
+            <label for="inizio">Data inizio</label>
+            <input type="date" id="inizio" placeholder="Data inizio" name="inizio">
+            <label for="fine">Giorno</label>
+            <input type="date" id="fine" placeholder="Data fine" name="fine">
+            <input type="submit" value="Mostra i grafici">
+        </fieldset>
+    </form>
+</body>
+</html>
