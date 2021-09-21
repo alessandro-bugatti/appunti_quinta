@@ -15,3 +15,4 @@ Partendo da questo spunto, verrà qui sviluppata un'applicazione che risolva que
 - Possibilità di **registrazione** di ogni tampone eseguito
 - Grafico del **numero di prenotazioni giornaliere** in un intervallo scelto dal sanitario
 - **Proposta** dei giorni in cui prenotare il tampone scelta all'interno di una data massima e evitando i giorni in cui il numero massimo di prenotazioni è già stato raggiunto
+- Inserimento di un **documento d'identità** sotto forma di immagine

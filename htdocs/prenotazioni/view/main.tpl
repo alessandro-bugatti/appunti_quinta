@@ -24,6 +24,7 @@
                      <a href="index.php">Home</a>
                      <?php if(!isset($_SESSION['username'])): ?>
                          <a href="login.php">Login</a>
+                         <a href="prenota_con_upload.php">Prenota con un documento d'identità (sperimentale)</a>
                      <?php else: ?>
                          <span>Operazioni</span>
                          <a href="lista_prenotazioni.php" class="sublink-1">Mostra tutte le prenotazioni</a>

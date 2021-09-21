@@ -8,7 +8,7 @@ ini_set('log_errors', 0);
 //Variabili dell'applicazione
 $LUNGHEZZA_CODICE = 10;
 
-$PERSONE_MASSIME_PER_GIORNO = 2;
+$PERSONE_MASSIME_PER_GIORNO = 5;
 $GIORNI_PRENOTABILI = 7;
 
 $host = 'localhost';

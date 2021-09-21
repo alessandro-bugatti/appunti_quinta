@@ -7,6 +7,7 @@
     <tr>
         <th>Codice fiscale</th>
         <th>Codice univoco</th>
+        <th>Documento d'identità</th>
     </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
         <tr>
             <td><?php echo $row['codice_fiscale'] ?></td>
             <td><?php echo $row['codice_univoco'] ?></td>
+            <td><img src="<?=$row['documento'] ?>"></td>
         </tr>
         <?php endforeach ?>
     </tbody>
