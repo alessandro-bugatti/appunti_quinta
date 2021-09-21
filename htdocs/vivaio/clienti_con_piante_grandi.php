@@ -28,14 +28,16 @@ $pdo = new PDO($dsn,$user,$pass);
 //Voglio sapere tutti i tipi di pino che ci sono nel database
 //$stmt = $pdo->query('SELECT nome, cognome, anno_assunzione FROM personale WHERE anno_assunzione > 2005 AND qualifica = "Operaio"');
 
-$stmt = $pdo->query('SELECT cliente.nominativo
+$tipo = $_GET['tipo'];
+
+$stmt = $pdo->query("SELECT cliente.nominativo
 FROM cliente, intervento, intervento_piante, esemplare, tipologia, tipo
 WHERE cliente.ID = intervento.id_cliente
 AND intervento.ID = intervento_piante.id_intervento
 AND intervento_piante.id_esemplare = esemplare.ID
 AND esemplare.id_tipologia = tipologia.ID
 AND esemplare.id_tipo = tipo.ID
-AND tipologia.descrizione = "grande"');
+AND tipologia.descrizione = '$tipo'");
 
 var_dump($stmt);
 

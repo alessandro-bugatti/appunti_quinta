@@ -28,7 +28,7 @@ $pdo = new PDO($dsn,$user,$pass);
 //Voglio sapere tutti i tipi di pino che ci sono nel database
 //$stmt = $pdo->query('SELECT nome, cognome, anno_assunzione FROM personale WHERE anno_assunzione > 2005 AND qualifica = "Operaio"');
 
-$stmt = $pdo->query('SELECT nome FROM tipo WHERE nome = :nome', ['nome' => 'Pino']);
+$stmt = $pdo->query('SELECT nome FROM tipo WHERE nome');
 
 //var_dump($stmt);
 echo json_encode( $stmt->fetchAll());
