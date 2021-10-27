@@ -1,6 +1,6 @@
-#I Template
+# I Template
 
-##Scopo
+## Scopo
 
 Lo scopo del meccanismo dei template è quello di poter suddividere meglio il codice quando si utilizza PHP per generare delle pagine HTML. Da questo punto di vista non è essenziale, ma per progetti da una certa complessità in poi aiuta molto, poichè:
 - viene suddiviso il *controller* dalla *view*
@@ -33,7 +33,7 @@ composer update
 
 In tutti e due i casi il comando deve essere eseguito nella cartella di progetto. Apparirà una cartella *vendor* dove automaticamente sono state scaricate le librerie richieste.
 
-##Architettura di Plates
+## Architettura di Plates
 
 Nei nostri esercizi useremo Plates nel seguente modo:
 - inizialmente, nel controller, dobbiamo creare un oggetto di classe Engine. Per far questo dobbiamo prima di tutto caricare la libreria utilizzando il meccanismo di autoloading, con la seguente linea
