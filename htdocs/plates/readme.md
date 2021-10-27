@@ -55,3 +55,8 @@ echo $templates->render('nome_template', $array);
 ```
 
 dove il primo parametro è il nome del file che funge da template per questo controller, il secondo invece deve essere un array, della forma di una serie di coppie chiave-valore, dove la chiave è una stringa che rappresenta un nome di variabile che poi verrà usato nel template, e il valore è il contenuto della variabile che verrà usata nel template.
+
+Il template dovrà all'interno "stampare" le variabili che arrivano dal controller in modo che siano visibili all'utente nella forma desiderata. Se si tratta di stampare una sola variabile l'istruzione più semplice è questa
+```php
+<?php=$variabile?>
+```
