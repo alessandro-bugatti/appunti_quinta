@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title><?=$this->e($title)?></title>
+</head>
+<body>
+<h1><?php echo $title ?></h1>
+<!--Questa parte sarà sempre così e serve a includere
+il template che contiene il contenuto vero e proprio-->
+<?=$this->section('content')?>
+</body>
+</html>
