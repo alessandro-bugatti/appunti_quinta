@@ -1,0 +1,23 @@
+<?php $this->layout('home', ['title' => 'Hamming']) ?>
+
+<h1>Calcolatore distanza di Hamming</h1>
+<form action="hamming.php" method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-1">Prima stringa</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text" id="input-example-1" placeholder="Prima stringa" name="stringa1">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-example-2">Seconda</label>
+            </div>
+            <div class="col-9 col-sm-12">
+                <input class="form-input" type="text" id="input-example-2" placeholder="Seconda stringa" name="stringa2">
+            </div>
+    </div>
+            <p><input type="submit" value="Calcola"></p>
+    <!-- form structure -->
+</form>
