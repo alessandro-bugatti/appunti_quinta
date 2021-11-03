@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var $righe
+ * @var $totale
+ */
+?>
+
+<?php $this->layout('home', ['title' => 'Hamming']) ?>
+
+<?php foreach ($righe as $riga): ?>
+
+Anno <?= $riga['anno']?> : quota capitale: <?= $riga['capitale'] ?>
+    quota interesse: <?= $riga['interesse'] ?> <br>
+
+<?php endforeach; ?>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Anno</th>
+        <th>Quota capitale</th>
+        <th>Quota interesse</th>
+    </tr>
+    </thead>
+    <?php foreach ($righe as $riga): ?>
+    <tr>
+        <td><?= $riga['anno']?></td>
+        <td><?= $riga['capitale'] ?></td>
+        <td><?= $riga['interesse'] ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+<p>Il totale da pagare sarà <?=$totale?></p>

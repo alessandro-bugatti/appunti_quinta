@@ -1,0 +1,36 @@
+<?php $this->layout('home', ['title' => 'Mutuo']) ?>
+
+<h1>Ammortamento</h1>
+<p>Grazie a questa applicazione potrai vedere le rate del tuo mutuo</p>
+<form action="mutuo.php" method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-1">Inserisci il capitale in euro</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text" id="input-example-1" placeholder="Capitale" name="capitale">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-example-2">Inserisci l'interesse proposto</label>
+            </div>
+            <div class="col-9 col-sm-12">
+                <input class="form-input" type="text" id="input-example-2" placeholder="Interesse" name="interesse">
+            </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-3">Scegli la durata in anni</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <select class="form-select" name="anni">
+                <?php foreach ($anni as $anno): ?>
+                    <option value="<?=$anno?>"><?=$anno?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+            <p><input type="submit" value="Calcola"></p>
+    <!-- form structure -->
+</form>
