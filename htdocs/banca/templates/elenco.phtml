@@ -1,0 +1,22 @@
+<?php $this->layout('home', ['title' => 'Gestisci clienti']) ?>
+
+<h1>Elenco dei clienti</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nominativo</th>
+            <th>Codice fiscale</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <?php foreach ($clienti as $cliente): ?>
+        <tr>
+            <td><?=$cliente['nominativo']?></td>
+            <td><?=$cliente['codice_fiscale']?></td>
+            <td><a href="modifica.php?id=<?=$cliente['id']?>"><i class="icon icon-edit"></i></a></td>
+            <td><a href="elimina.php?id=<?=$cliente['id']?>"><i class="icon icon-delete"></i></a> </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

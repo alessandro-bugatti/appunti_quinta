@@ -1,0 +1,53 @@
+<?php $this->layout('home', ['title' => 'Mutuo']) ?>
+
+<h1>Cliente</h1>
+<p>Modifica i dati</p>
+<form action="effettua_modifica.php" method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-1">Nominativo</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="nominativo" value="<?=$cliente['nominativo']?>">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-example-2">Codice fiscale</label>
+            </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="codice_fiscale" value="<?=$cliente['codice_fiscale']?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Città</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="citta" value="<?=$cliente['citta']?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Indirizzo</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="indirizzo" value="<?=$cliente['indirizzo']?>">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Telefono</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="telefono" value="<?=$cliente['telefono']?>">
+        </div>
+    </div>
+    <p><input type="submit" value="Modifica"></p>
+    <!-- form structure -->
+</form>
