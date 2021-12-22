@@ -9,6 +9,7 @@
             <th>Codice fiscale</th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <?php foreach ($clienti as $cliente): ?>
@@ -17,6 +18,7 @@
             <td><?=$cliente['codice_fiscale']?></td>
             <td><a href="modifica.php?id=<?=$cliente['id']?>"><i class="icon icon-edit"></i></a></td>
             <td><a href="elimina.php?id=<?=$cliente['id']?>"><i class="icon icon-delete"></i></a> </td>
+            <td><a href="nuovo_conto.php?id=<?=$cliente['id']?>"><i class="icon icon-plus"></i></a> </td>
         </tr>
     <?php endforeach; ?>
 </table>

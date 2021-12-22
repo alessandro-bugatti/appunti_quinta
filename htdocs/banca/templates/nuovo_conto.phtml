@@ -1,0 +1,39 @@
+<?php $this->layout('home', ['title' => 'Creazione nuovo conto']) ?>
+
+<h1>Creazione del nuovo conto per <?=$cliente['nominativo']?></h1>
+<p>Inserisci il nuovo conto corrente</p>
+<form action="crea_conto.php" method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-1">Numero di conto</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="numero_conto">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-example-2">Saldo</label>
+            </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="saldo">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Filiale</label>
+        </div>
+        <div class="col-9 col-sm-12">
+        <select class="form-select" name="id_filiale">
+            <?php foreach ($filiali as $filiale): ?>
+                <option value="<?=$filiale['id']?>"><?=$filiale['nome'] . " - " . $filiale['codice']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        </div>
+    </div>
+    <p><input type="submit" value="Aggiungi conto"></p>
+    <!-- form structure -->
+</form>
