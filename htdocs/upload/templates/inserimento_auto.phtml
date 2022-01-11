@@ -1,0 +1,57 @@
+<?php $this->layout('home', ['title' => 'Inserimento nuova auto']) ?>
+
+<h1>Nuova auto</h1>
+<p>Inserisci i dati della nuova auto</p>
+<form enctype="multipart/form-data" action="inserisci_auto.php" method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-1">Targa</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="targa">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-3 col-sm-12">
+                <label class="form-label" for="input-example-2">Marca</label>
+            </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="marca">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Modello</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="modello">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Costo giornaliero</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="text"
+                   id="input-example-1" name="costo">
+        </div>
+    </div>
+    <!-- MAX_FILE_SIZE must precede the file input field -->
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="input-example-2">Immagine</label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="file"
+                   id="input-example-1" name="immagine">
+        </div>
+
+    </div>
+    <p><input type="submit" value="Aggiungi nuova auto"></p>
+    <!-- form structure -->
+</form>
