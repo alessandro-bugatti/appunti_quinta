@@ -45,3 +45,5 @@ htdocs/sito
 htdocs/plates/vendor.zip
 htdocs/plates/vendor/autoload.php
 htdocs/plates/vendor
+vendor/
+
