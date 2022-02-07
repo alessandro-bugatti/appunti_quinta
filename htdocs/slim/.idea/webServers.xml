@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6403545b-f8b7-4a72-a7c1-93c383e88069" name="locahost" url="http://localhost/slim">
+        <fileTransfer mountedRoot="D:\xampp_7_4_25\htdocs\slim" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
