@@ -51,6 +51,15 @@ $app->get('/altra_pagina', function (Request $request, Response $response, $args
 $app->run();
 ```
 
+**Attenzione**: il parametro nella chiamata al metodo ```setBasePath``` deve rispecchiare l'esatta struttura delle cartelle dove si trova l'applicazione. In questo esempio il metodo viene chiamato in questo modo
+```php
+$app->setBasePath("/slim");
+```
+perchè l'applicazione si trova nella sottocartella *slim* all'interno della root del web server, se ad esempio la cartella si trovasse nella cartella *5AI/slim* allora l'istruzione andrebbe riscritta come
+```php
+$app->setBasePath("/5AI/slim");
+```
+
 ## Configurare Apache per l'URL rewriting
 Poichè l'applicazione ha bisogno che tutte le richieste HTTP arrivino al file *index.php*, è necessario istruire il web server per fare in modo che ogni richiesta che arriva faccia partire il file *index.php*, indipendentemte da quale sia la richiesta presente nell'URL.
 
