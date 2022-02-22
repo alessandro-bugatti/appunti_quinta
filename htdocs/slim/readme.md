@@ -72,7 +72,7 @@ principale, *slim* in questo esempio, un file *.htaccess* con il seguente conten
 ```apacheconf
 RewriteEngine On
 
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^ public/index.php [QSA,L]
 ```
 
 A questo punto dovrebbe essere sufficiente inserire l'indirizzo ```localhost/slim``` nella barra degli indirizzi del browser e dovrebbe apparire una pagina con la scritta **Hello world**. Per ulteriore conferma provare  a inserire ```localhost/slim/altra_pagina``` e dovrebbe comparire il testo **Questa è un'altra pagina**.
