@@ -71,9 +71,7 @@ Infine, per fare in modo che tutte le richieste vengano dirottate sul file *inde
 principale, *slim* in questo esempio, un file *.htaccess* con il seguente contenuto:
 ```apacheconf
 RewriteEngine On
-RewriteBase /slim/public
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^ index.php [QSA,L]
 ```
 
