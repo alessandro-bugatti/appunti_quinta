@@ -85,3 +85,70 @@ RewriteRule ^ public/index.php [QSA,L]
 ```
 
 A questo punto dovrebbe essere sufficiente inserire l'indirizzo ```localhost/slim``` nella barra degli indirizzi del browser e dovrebbe apparire una pagina con la scritta **Hello world**. Per ulteriore conferma provare  a inserire ```localhost/slim/altra_pagina``` e dovrebbe comparire il testo **Questa è un'altra pagina**.
+
+## Gestione degli errori
+Slim prevede già un meccanismo di gestione degli errori/eccezioni con un proprio Middleware, per attivarlo è sufficiente introdurre questa riga di codice
+
+```php
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+```
+
+Di default il comportamento è quello di intercettare errori/eccezioni e mandare in risposta una pagina HTML con le informazioni sul problema, eventualmente con anche i dettagli dello stack di chiamate nel caso il 
+primo parametro fosse uguale a ```true```, come nell'esempio qua sopra. Gli altri due parametri sono rilevanti solo se si utilizza un meccanismo di *logging*, per maggiori informazioni fare riferimento 
+alla [documentazione ufficiale](https://www.slimframework.com/docs/v4/middleware/error-handling.html).
+
+## Utilizzare Plates
+Volendo utilizzare la libreria di templates Plates, come già fatto in precedenza, dovrà essere
+importata con il solito comando
+```bash
+composer require league/plates
+```
+e nel codice andrà indicata con 
+```php
+use League\Plates\Engine;
+```
+
+ed è poi buona cosa utilizzare un [Dipendency Injector](https://en.wikipedia.org/wiki/Dependency_injection) per utilizzarla all'interno dei Slim. Senza dilungarsi sul concetto
+di Dipendency Injection, lo scopo è quello di separare in maniera pulita un servizio (in questo caso
+Plates) dall'applicazione vera e propria che utilizzerà quel servizio.
+In pratica per ottenere lo scopo bisogna prima importare una libreria che implementi il meccanismo
+di DI, e Slim suggerisce di utilizzare PHP-DI, e con Composer si fa
+
+```bash
+composer require php-di/slim-bridge:* --with-all-dependencies
+```
+
+Fatto questo, basterà aggiungere nel codice la creazione del Container, che poi dovrà essere
+passato all'applicazione
+
+```php
+$container = new Container();
+//da inserire prima della create di AppFactory
+AppFactory::setContainer($container);
+```
+
+Per aggiungere dei servizi al container è sufficiente usare il metodo ```set```, che nel caso specifico
+di Plates verrà fatto in questo modo
+
+```php
+$container->set('template', function (){
+    return new League\Plates\Engine('../templates', 'phtml');
+});
+```
+dove il primo parametro è la chiave per recuperare il servizio e il secondo è la funzione anonima
+che ritorna il servizio, occupandosi della sua creazione.
+**Attenzione**: il primo parametro del costruttore dell'Engine deve come al solito contenere la cartella
+dove poi verranno inseriti i vari template, ma il percorso deve essere relativo al file dove si trovano
+queste istruzioni: nel nostro caso in cui il file ```index.php``` si trova nella cartella **public** il nome della cartella deve essere preceduto da ```../```.
+
+Una volta aggiunto Plates nel container, per poterlo utilizzare basterà aggiungere del codice come il
+seguente nelle callback per le rotte su cui vogliamo usare dei template.
+
+```php
+$app->get('/template/{name}', function (Request $request, Response $response, $args) {
+    $template = $this->get('template');
+    $variabile = [ 'name' => $args['name']];
+    $response->getBody()->write($template->render('esempio', $variabile));
+    return $response;
+});
+```

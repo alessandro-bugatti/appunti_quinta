@@ -1,13 +1,38 @@
 <?php
+use DI\Container as Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use League\Plates\Engine;
+
+$container = new Container();
+
+// Set container to create App with on AppFactory
+AppFactory::setContainer($container);
+
 $app = AppFactory::create();
 
 $app->setBasePath("/slim");
+
+$container->set('template', function (){
+    return new League\Plates\Engine('../templates', 'phtml');
+});
+
+/**
+ * Add Error Middleware
+ *
+ * @param bool                  $displayErrorDetails -> Should be set to false in production
+ * @param bool                  $logErrors -> Parameter is passed to the default ErrorHandler
+ * @param bool                  $logErrorDetails -> Display error details in error log
+ * @param LoggerInterface|null  $logger -> Optional PSR-3 Logger
+ *
+ * Note: This middleware should be added last. It will not handle any exceptions/errors
+ * for middleware added after it.
+ */
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
 $app->get('/', function (Request $request, Response $response, $args) {
     $response->getBody()->write("Hello world!");
@@ -16,6 +41,13 @@ $app->get('/', function (Request $request, Response $response, $args) {
 
 $app->get('/altra_pagina', function (Request $request, Response $response, $args) {
     $response->getBody()->write("Questa è un'altra pagina");
+    return $response;
+});
+
+$app->get('/template/{name}', function (Request $request, Response $response, $args) {
+    $template = $this->get('template');
+    $variabile = [ 'name' => $args['name']];
+    $response->getBody()->write($template->render('esempio', $variabile));
     return $response;
 });
 
@@ -67,8 +99,8 @@ OEF;
     }
 
     $country = $args['name'];
-    $stmt = $pdo->query('SELECT Name, Population FROM country WHERE Name  = "' .
-        $country . '"');
+    $stmt = $pdo->prepare('SELECT Name, Population FROM country WHERE Name  = :country');
+    $stmt->execute([ 'country' => $country]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $risposta = [
         "sensors" => $result
