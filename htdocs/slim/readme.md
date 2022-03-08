@@ -137,6 +137,7 @@ $container->set('template', function (){
 ```
 dove il primo parametro è la chiave per recuperare il servizio e il secondo è la funzione anonima
 che ritorna il servizio, occupandosi della sua creazione.
+
 **Attenzione**: il primo parametro del costruttore dell'Engine deve come al solito contenere la cartella
 dove poi verranno inseriti i vari template, ma il percorso deve essere relativo al file dove si trovano
 queste istruzioni: nel nostro caso in cui il file ```index.php``` si trova nella cartella **public** il nome della cartella deve essere preceduto da ```../```.
@@ -152,3 +153,75 @@ $app->get('/template/{name}', function (Request $request, Response $response, $a
     return $response;
 });
 ```
+
+## Connessione al database
+
+Per utilizzare il database e dare un minimo di organizzazione, conviene isolare
+l'aspetto della connessione in una classe apposita, che avrà un metodo da invocare ogni volta che nell'applicazione è necessario recuperare dei dati dal DB.
+Per far questo vien creato un file, *config.php* all'interno della cartella *conf*, che conterrà le informazioni necessarie alla connessione in questo modo:
+
+```php
+const DB_HOST = 'host';
+const DB_NAME = 'db_name';
+const DB_USER = 'user';
+const DB_PASSWORD = 'password';
+const DB_CHAR = 'utf8';
+```
+con i parametri opportunamento configurati per la propria connessione.
+
+La classe che fornirà la connessione vera e propria verrà invece creata nel file *Connection.php* 
+all'interno della cartella *Util*.
+
+Per poter utilizzare in ogni punto dell'applicazione questa nuova classe sarà necessario indicare
+al meccanismo di *autoloading* dove recuperarla, in modo da non sia necessario dover includere
+a mano i file ogni volta.
+Per far questo nel file *Connection.php* sarà necessario aggiungere la linea
+
+```php
+namespace Util;
+```
+
+e poi ricostruire i file di autoloading aggiungendo le righe 
+
+```php
+  "autoload": {
+    "psr-4": {
+      "Util\\" : "Util/"
+    }
+  },
+```
+all'interno di *composer.json* e chiamando **composer** in questo modo
+
+```bash
+composer dumpupdate
+```
+in modo che aggiorni i file all'interno della cartella *vendor* per permettere il caricamento 
+della classe *Connection*, che quindi sarà utilizzabile semplicemente aggiungendo
+la riga
+
+```php
+use Util\Connection;
+```
+all'inizio di ogni file che la vorrà utilizzare, nel nostro caso *index.php*.
+
+La classe *Connection* avrà un solo attributo statico, ```$pdo```, che rappresenta appunto la connessione al DB, avrà il costruttore privato perchè non è pensata per essere istanziata e
+un metodo ```getInstance()``` che restituisce la connessione, istanziandola se è la prima volta
+che viene chiamato in uno script oppure restituendo la connessione corrente se esiste già.
+Si veda il contenuto di *Connection.php* per maggiori dettagli.
+
+A questo punto, come per il template, verrà aggiunto nel container il comando per recuperare il DB,
+con le seguenti righe:
+
+```php
+$container->set('connection', function (){
+    return Connection::getInstance();
+});
+```
+
+e ogni volta che bisognerà recuperare una connessione sarà sufficiente chiamare
+
+```php
+$pdo = $this->get('connection');
+```
+all'interno di una qualsiasi route per ottenere la connessione e poi procedere come abbiamo già visto
+negli esempi precedenti.

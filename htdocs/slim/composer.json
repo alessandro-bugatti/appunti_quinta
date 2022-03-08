@@ -1,7 +1,14 @@
 {
+  "autoload": {
+    "psr-4": {
+      "Util\\" : "Util/"
+    }
+  },
     "require": {
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
-      "ext-json": "*"
+      "ext-json": "*",
+        "league/plates": "^3.4",
+        "php-di/slim-bridge": "*"
     }
 }
