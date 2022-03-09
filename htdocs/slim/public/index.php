@@ -20,7 +20,7 @@ $app = AppFactory::create();
 $app->setBasePath("/slim");
 
 $container->set('template', function (){
-    return new League\Plates\Engine('../templates', 'phtml');
+    return new Engine('../templates', 'phtml');
 });
 
 $container->set('connection', function (){
