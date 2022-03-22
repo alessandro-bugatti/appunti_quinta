@@ -193,7 +193,7 @@ e poi ricostruire i file di autoloading aggiungendo le righe
 all'interno di *composer.json* e chiamando **composer** in questo modo
 
 ```bash
-composer dumpupdate
+composer dumpautoload
 ```
 in modo che aggiorni i file all'interno della cartella *vendor* per permettere il caricamento 
 della classe *Connection*, che quindi sarà utilizzabile semplicemente aggiungendo
