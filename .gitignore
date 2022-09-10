@@ -36,6 +36,8 @@
 *.exe
 *.out
 
+# File di lock
+*.lock
 
 # Progetti esclusi
 /quinta/htdocs/poste/
