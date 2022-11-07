@@ -15,8 +15,17 @@
     //viene dedotto dal contesto
     $primo = $_POST['primo']; //$_POST è un superarray globale
     $secondo = $_POST['secondo'];
-    $somma = $primo + $secondo;
-    echo $somma;
+    $operazione = $_POST['operazione'];
+    $risultato = 0;
+    if ($operazione == 'addizione')
+        $risultato = $primo + $secondo;
+    else if($operazione == 'sottrazione')
+        $risultato = $primo - $secondo;
+    else if($operazione == 'moltiplicazione')
+        $risultato = $primo * $secondo;
+    else
+        $risultato = $primo / $secondo;
+    echo '<p>Il risultato della <strong>' . $operazione . '</strong> è ' . $risultato . '</p>';
 ?>
 
 </body>

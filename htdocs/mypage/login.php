@@ -8,18 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-
 <?php
-    //in PHP le variabili hanno un $ davanti
-    //Non hanno bisogno di essere dichiarate, il tipo
-    //viene dedotto dal contesto
-    $primo = $_POST['primo']; //$_POST è un superarray globale
-    $secondo = $_POST['secondo'];
-    $somma = $primo + $secondo;
-    echo $somma;
-?>
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if($username == 'alessandro' && $password == 'bugatti'){
+        echo "<p>Ciao Alessandro, bentornato</p>";
+    }
+    else{
+        echo "<p>Utente non riconosciuto</p>";
 
+    }
+?>
 </body>
 </html>
-
 
