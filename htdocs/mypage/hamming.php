@@ -27,10 +27,7 @@
     {
         $errori = "";
         for ($i = 0; $i < strlen($s1); $i++) {
-            if ($s1[$i] != 'A' &&
-                $s1[$i] != 'C' &&
-                $s1[$i] != 'G' &&
-                $s1[$i] != 'T')
+            if (preg_match("/[^ACTG]/", $s1[$i]) == 1)
                 $errori .= '^';
             else
                 $errori .= ' ';
