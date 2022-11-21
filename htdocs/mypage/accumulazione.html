@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accumulazione</title>
+</head>
+<body>
+<h1>Accumulazione</h1>
+<form action="accumulazione.php" method="post">
+  Valori (separati da virgola) <input type="text" name="valori" value="1,2,3"><br>
+
+  Operazioni sulla sequenza
+  <select name="operazioni">
+    <option value="1">Quadrato</option>
+    <option value="2">Cubo</option>
+    <option value="3">Radice quadrata</option>
+  </select>
+
+  <p>Scegli su quali numeri operare</p>
+  <p>
+    <input type="checkbox" name="pari"> Pari <br>
+    <input type="checkbox" name="dispari"> Dispari
+  </p>
+  <br>
+  <input type="submit" value="Invia la sequenza">
+
+
+</form>
+</body>
+</html>
