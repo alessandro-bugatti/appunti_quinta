@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training</title>
+</head>
+<body>
+<h1>Inserisci i tuoi dati</h1>
+<form action="training.php" method="post">
+    <p>Inserisci nome e cognome
+        <input type="text" name="nominativo">
+    </p>
+    <p>Inserisci la tua altezza in metri
+        <input type="text" name="altezza"></p>
+    <p>Inserisci il tuo peso in Kg
+        <input type="text" name="peso">
+    </p>
+    <p>Numero allenamenti
+        <select name="n_allenamenti">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </p>
+    <p>Attività scelta
+        <select name = "attivita">
+            <option>Corsa</option>
+            <option>Nuoto</option>
+            <option>Palestra</option>
+        </select>
+    </p>
+    <p><input type="submit" value="Invia i tuoi dati"></p>
+</form>
+</body>
+</html>
