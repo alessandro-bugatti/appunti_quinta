@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var $risultato
+ */
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,33 +13,15 @@
     <title>Document</title>
 </head>
 <body>
-
+<h1>Moltiplicazione tra due numeri</h1>
 <form action="" method="post">
     <input type="text" name="a">
     <input type="text" name="b">
     <input type="submit" value="Invia">
 </form>
 
-<?php
-/**
- * PHP è un linguaggio di scripting
- * Non è tipizzato
- * Gira lato server
- * Produce "qualcosa" che il client utilizza per fornire il servizio
- * La sintassi prende spunto da C e bash
- */
+<p>Il risultato è <strong><?=$risultato?></strong></p>
 
-//Una variabile esiste nel momento in cui si fa il primo assegnamento
-//ed é prefissa dal simbolo $
-
-$a = $_POST['a'];
-$b = $_POST['b'];
-$c = $a * $b;
-
-
-echo '<p>Il risultato della moltiplicazione tra ' . $a
-    . ' e ' . $b . ' è ' . $c . '</p>';
-?>
 </body>
 </html>
 

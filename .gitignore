@@ -40,12 +40,5 @@
 *.lock
 
 # Progetti esclusi
-/quinta/htdocs/poste/
-/quinta/htdocs/tennis/
-/quinta/htdocs/ask*
-htdocs/sito
-htdocs/plates/vendor.zip
-htdocs/plates/vendor/autoload.php
-htdocs/plates/vendor
 vendor/
 
