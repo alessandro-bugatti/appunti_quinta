@@ -1,4 +1,8 @@
 <?php
+    require 'vendor/autoload.php';
+
+    $template = new League\Plates\Engine('templates', 'tpl');
+
     //Creiamo la stringa DSN (Data Source Name)
     $dsn = 'mysql:host=localhost;dbname=scuola';
 
@@ -6,10 +10,8 @@
 
     $result = $pdo->query('SELECT * FROM studenti');
 
-    echo '<ul>';
-    foreach ($result as $row){
-        echo '<li>' . $row['Nome'] . ' ' . $row['Cognome'] . '</li>';
-    }
-    echo '</ul>';
+    echo $template->render('index', [
+        'studenti'=>$result
+    ]);
 
 
