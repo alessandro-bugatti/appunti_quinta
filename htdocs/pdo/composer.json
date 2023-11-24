@@ -1,5 +1,11 @@
 {
     "require": {
         "league/plates": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Util\\": "Util/",
+            "Model\\": "Model/"
+        }
     }
 }
