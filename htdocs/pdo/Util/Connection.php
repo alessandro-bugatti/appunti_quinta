@@ -3,8 +3,6 @@
 namespace Util;
 use PDO;
 
-require_once '../conf/config.php';
-
 /**
  * Classe per gestire la connessione al database
  */
