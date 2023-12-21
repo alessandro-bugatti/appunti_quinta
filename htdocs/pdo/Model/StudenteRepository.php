@@ -59,4 +59,15 @@ class StudenteRepository
             'cognome' => $cognome
         ]);
     }
+
+    public static function remove($id)
+    {
+        $pdo = Connection::getInstance();
+        $sql = 'DELETE FROM studenti WHERE id=:id';
+
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
+    }
 }
