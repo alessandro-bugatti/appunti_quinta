@@ -12,7 +12,17 @@ class StudenteRepository
         $result = $pdo->query($sql);
         return $result->fetchAll();
     }
-
+    public static function getStudenteByID($id)
+    {
+        $pdo = Connection::getInstance();
+        $sql = 'SELECT * FROM studenti WHERE ID=:id';
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'id' => $id
+        ]);
+        $studente = $result->fetchAll();
+        return $studente[0];
+    }
     public static function listAllUsingId($id): array
     {
         $pdo = Connection::getInstance();
@@ -67,6 +77,17 @@ class StudenteRepository
 
         $result = $pdo->prepare($sql);
         $result->execute([
+            'id' => $id
+        ]);
+    }
+    public static function update($nome, $cognome, $id)
+    {
+        $pdo = Connection::getInstance();
+        $sql = 'UPDATE studenti SET Nome = :nome, Cognome = :cognome WHERE id = :id';
+        $result = $pdo->prepare($sql);
+        $result->execute([
+            'nome' => $nome,
+            'cognome' => $cognome,
             'id' => $id
         ]);
     }
