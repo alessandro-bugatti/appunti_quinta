@@ -12,26 +12,32 @@
 </head>
 <body>
 <form action="index.php" method="post">
-    <input type="text" name="nome" placeholder="Nome"
-           value="<?=$studente['Nome']?>"><br>
-    <input type="text" name="cognome" placeholder="cognome"
-           value="<?=$studente['Cognome']?>"><br>
-    <?php if(isset($studente['id'])):?>
-    <input type="hidden" name="id"
-           value="<?=$studente['id']?>"><br>
-    <?php endif;?>
+    <input type="text" name="nome" placeholder="Nome"><br>
+    <input type="text" name="cognome" placeholder="cognome"><br><br>
     <input type="submit">
 </form>
     <h1>Elenco studenti</h1>
     <table>
-        <?php foreach ($studenti as $studente):?>
+        <?php foreach ($studenti as $s):?>
+        <?php if(isset($studente['id']) && $s['id'] == $studente['id']):?>
+                <form action="index.php" method="post">
             <tr>
-                <td><?=$studente['Nome']?></td>
-                <td><?=$studente['Cognome']?></td>
-                <td><?=$studente['Classe']?></td>
-                <td><a href="index.php?action=delete&id=<?=$studente['id']?>"><i class="icon icon-delete"></i></a></td>
-                <td><a href="index.php?action=update&id=<?=$studente['id']?>"><i class="icon icon-edit"></i></a></td>
+                <td><input type="text" name="nome" value="<?=$studente['Nome']?>"></td>
+                <td><input type="text" name="cognome" value="<?=$studente['Cognome']?>"></td>
+                <input type="hidden" name="id" value="<?=$studente['id']?>">
+                <td><?=$s['Classe']?></td>
+                <td><button type="submit">Modifica</button></td>
             </tr>
+                </form>
+        <?php else:?>
+                <tr>
+                    <td><?=$s['Nome']?></td>
+                    <td><?=$s['Cognome']?></td>
+                    <td><?=$s['Classe']?></td>
+                    <td><a href="index.php?action=delete&id=<?=$s['id']?>"><i class="icon icon-delete"></i></a></td>
+                    <td><a href="index.php?action=update&id=<?=$s['id']?>"><i class="icon icon-edit"></i></a></td>
+                </tr>
+        <?php endif;?>
         <?php endforeach;?>
     </table>
 </body>
