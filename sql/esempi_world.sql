@@ -81,3 +81,45 @@ SELECT Continent, SUM(Population) as Popolazione
 FROM country
 GROUP BY Continent
 ORDER BY Popolazione DESC
+
+-- NUmero di città contenute in ogni stato
+SELECT country.Name AS Stato, COUNT(*) AS NumeroCitta
+FROM country INNER JOIN city ON country.Code = city.CountryCode
+GROUP BY country.Code
+HAVING NumeroCitta >= 10
+ORDER BY NumeroCitta DESC
+
+-- Numero di persone che parlano inglese in ogni continente
+
+
+-- Esempio di create view
+CREATE VIEW a AS
+SELECT language, SUM(percentage*Population/100) AS parlanti
+FROM country INNER JOIN countryLanguage ON country.code =
+countryLanguage.countryCode
+GROUP BY language
+
+
+SELECT COUNT(*)
+FROM countrylanguage;
+
+SELECT COUNT(*)
+FROM (
+SELECT language
+FROM countrylanguage
+GROUP BY language) AS b;
+
+SElECT COUNT(DISTINCT language)
+FROM countrylanguage;
+
+SELECT DISTINCT language
+FROM countrylanguage
+WHERE Language LIKE 'I%';
+
+SELECT DISTINCT GovernmentForm, Name
+FROM country
+WHERE GovernmentForm LIKE '%chy%';
+
+SELECT HeadOfState, Name
+    FROM country
+WHERE GNP = 0;
