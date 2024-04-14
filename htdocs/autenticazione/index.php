@@ -15,8 +15,6 @@ if ($user == null){
     exit(0);
 }
 
-$displayed_name = $user['nome'] . ' ' . $user['cognome'];
-
 if (isset($_GET['action'])){
     if (($_GET['action']) == 'logout'){
         Authenticator::logout();
@@ -24,6 +22,8 @@ if (isset($_GET['action'])){
         exit(0);
     }
 }
+
+$displayed_name = $user['nome'] . ' ' . $user['cognome'];
 
 echo $template->render('mypage', [
     'displayed_name' => $displayed_name

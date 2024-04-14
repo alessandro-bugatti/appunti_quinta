@@ -48,7 +48,8 @@ class Authenticator{
     public static function logout()
     {
         self::start();
-        //Distrugge la sessione sul client
+        //Distrugge la sessione per evitare che parti successive del codice
+        //nello stesso script la utilizzino
         $_SESSION = [];
         //Distrugge la sessione sul server
         session_destroy();
