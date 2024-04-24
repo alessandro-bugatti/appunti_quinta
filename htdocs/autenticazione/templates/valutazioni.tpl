@@ -2,10 +2,7 @@
 /**
  * Questo commento serve solo a eliminare l'indicazione di errore
  * da parte di PHPStorm per la variabile $studenti
- * @var $todos
- * @var $testo
- * @var $id
- * @var $importanza
+ * @var $valutazioni
  * @var $displayed_name
  */
 ?>
@@ -29,5 +26,20 @@
     </section>
 </header>
 
-<h1>Sei loggato</h1>
-<a href="index.php?action=valutazioni">Vai alle tue valutazioni</a>
+<h1>I tuoi voti</h1>
+
+<table>
+    <?php foreach ($valutazioni as $valutazione): ?>
+
+    <tr>
+        <td><?=$valutazione['voto']?></td>
+        <td><?=$valutazione['materia']?></td>
+        <td><?=$valutazione['data']?></td>
+    </tr>
+
+    <?php endforeach;?>
+
+</table>
+
+
+<a href="index.php">Torna alla pagina d'ingresso</a>
