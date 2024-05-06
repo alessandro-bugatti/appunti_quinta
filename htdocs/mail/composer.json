@@ -1,5 +1,22 @@
 {
-  "require" : {
+  "name": "alessandro.bugatti/mail",
+  "description": "Esempio di utilizzo di PHPMailer",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-only",
+  "authors": [
+    {
+      "name": "alex",
+      "email": "alessandro.bugatti@gmail.com"
+    }
+  ],
+  "require": {
+    "league/plates": "^3.4",
     "phpmailer/phpmailer": "^6.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Model\\": "Model/",
+      "Util\\" : "Util/"
+    }
   }
 }
