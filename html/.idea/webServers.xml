@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f60ac94d-ff02-457d-92f1-052fef633f4b" name="winnie" url="http://10.4.55.123/~impa/">
+        <fileTransfer rootFolder="/home/impa/public_html" accessType="SFTP" host="10.4.55.123" port="22" sshConfigId="1aaab767-2c99-4cb6-b3b0-6f0e134a58f1" sshConfig="impa@10.4.55.123:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
