@@ -14,7 +14,7 @@
 
 </form>
 
-<p><?=$benvenuto?></p>
+<p><?php echo $benvenuto?></p>
 
 </body>
 </html>
