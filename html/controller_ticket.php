@@ -16,6 +16,14 @@ function generaCifreCasuali($lunghezza)
 
 $codici = [];
 $nominativo = '';
+$nominativi = [
+    'Alessandro',
+    'Cristina',
+    'Daniele',
+    'Chiara',
+    'Andrea'
+];
+$biglietti = [];
 
 if (isset($_POST['nominativo'])) {
     $nominativo = $_POST['nominativo'];
@@ -23,6 +31,13 @@ if (isset($_POST['nominativo'])) {
 
     for ($i = 0; $i < $n_biglietti; $i++) {
         $codici[] = generaCifreCasuali(18);
+    }
+
+    $biglietti = [];
+    for ($i = 0; $i < $n_biglietti; $i++) {
+        $biglietti[] = [
+            'nominativo' => $nominativi[$i],
+            'codice' => $codici[$i]];
     }
 }
 
@@ -32,5 +47,6 @@ echo $templates->render('ticket',
     [
         'codici' => $codici,
         'nominativo' => $nominativo,
+        'biglietti' => $biglietti
     ]
 );

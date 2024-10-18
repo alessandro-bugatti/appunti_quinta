@@ -32,6 +32,16 @@
 </div>
 <?php endforeach;?>
 
+<?php if(count($biglietti) != 0):?>
+<h2>Seconda versione Rocca</h2>
+<?php endif; ?>
+
+<?php foreach ($biglietti as $biglietto):?>
+    <div>
+        <p>Nominativo: <?=$biglietto['nominativo']?></p>
+        <p>Codice univoco: <?=$biglietto['codice']?></p>
+    </div>
+<?php endforeach;?>
 
 </body>
 </html>
