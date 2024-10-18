@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var $codici L'array che contiene i codici univoci generati dal controller
+ * @var $nominativo Contiene il nominativo di chi ha comprato i biglietti
+ */
+?>
+
 <!doctype html>
 <html lang="it">
 <head>
@@ -17,10 +24,14 @@
     <button>Invia</button>
 </form>
 
-<pre>
-    <?php foreach ($codici as $codice):?>
 
-    <?php endforeach;?>
-</pre>
+<?php foreach ($codici as $codice):?>
+<div>
+    <p>Nominativo: <?=$nominativo?></p>
+    <p>Codice univoco: <?=$codice?></p>
+</div>
+<?php endforeach;?>
+
+
 </body>
 </html>

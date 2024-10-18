@@ -14,7 +14,8 @@ function generaCifreCasuali($lunghezza)
     return $cifreCasuali;
 }
 
-$codici = null;
+$codici = [];
+$nominativo = '';
 
 if (isset($_POST['nominativo'])) {
     $nominativo = $_POST['nominativo'];
@@ -30,5 +31,6 @@ if (isset($_POST['nominativo'])) {
 echo $templates->render('ticket',
     [
         'codici' => $codici,
+        'nominativo' => $nominativo,
     ]
 );
