@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 $templates = new League\Plates\Engine('templates','tpl');
 
-$dsn = 'mysql:host=localhost;dbname=scuola';
+$dsn = 'mysql:host=localhost;dbname=scuol';
 
 $user = 'root';
 $password = '';

@@ -5,10 +5,10 @@ require 'vendor/autoload.php';
 $template = new League\Plates\Engine('templates','tpl');
 
 //Parametri di connessione
-$dsn = 'mysql:host=localhost;dbname=negozio';
+$dsn = 'mysql:host=localhost;dbname=db_abanio';
 
-$user = 'root';
-$password = '';
+$user = 'abanio';
+$password = '************';
 
 $pdo = new PDO($dsn, $user, $password);
 
