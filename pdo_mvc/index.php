@@ -5,7 +5,7 @@ require 'conf/config.php';
 
 $template = new League\Plates\Engine('templates','tpl');
 
-$prodotti = \Model\ProdottoRepository::listAll();
+$prodotti = \Model\ProdottoRepository::listAllMale();
 
 echo $template->render('index',[
     'prodotti' => $prodotti,
