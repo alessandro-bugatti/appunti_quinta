@@ -42,4 +42,7 @@
 # Progetti esclusi
 vendor/
 config.php
-
+webServers.xml
+deployment.xml
+config.locale.php
+config.winnie.php
