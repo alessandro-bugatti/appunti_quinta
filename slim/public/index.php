@@ -1,5 +1,6 @@
 <?php
 
+use Controller\AdminController;
 use Controller\ProdottoController;
 use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -101,5 +102,13 @@ $app->get('/elenco', ProdottoController::class . ':listAll');
 $app->get('/elenco/genere/{genere}', ProdottoController::class . ':listAllByGenre');
 
 $app->get('/elenco/categorie/{categoria}',null);
+
+$app->get('/pannelloAdmin', AdminController::class . ':listAll');
+
+$app->get('/pannelloAdmin/prodotto', AdminController::class . ':formProdotto');
+
+$app->post('/pannelloAdmin/prodotto', AdminController::class . ':aggiungiProdotto');
+
+
 
 $app->run();
