@@ -109,6 +109,6 @@ $app->get('/pannelloAdmin/prodotto', AdminController::class . ':formProdotto');
 
 $app->post('/pannelloAdmin/prodotto', AdminController::class . ':aggiungiProdotto');
 
-
+$app->get('/pannelloAdmin/prodotto/{id}/delete', AdminController::class . ':cancellaProdotto');
 
 $app->run();

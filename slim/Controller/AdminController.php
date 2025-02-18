@@ -52,4 +52,15 @@ class AdminController{
         //il metodo withHeader con chiave Location indica dove avviene la ridirezione
         return $response->withHeader('Location', BASE_PATH . '/pannelloAdmin');
     }
+
+    public function cancellaProdotto(Request $request, Response $response, array $args): Response
+    {
+        $id = $args['id'];
+        //Passa i dati al metodo che li inserirà nel db
+        ProdottoRepository::cancellaProdotto($id);
+        //Aggiunde un header nella risposta che indica al browser che c'è stata una ridirezione
+        $response = $response->withStatus(302);
+        //il metodo withHeader con chiave Location indica dove avviene la ridirezione
+        return $response->withHeader('Location', BASE_PATH . '/pannelloAdmin');
+    }
 }

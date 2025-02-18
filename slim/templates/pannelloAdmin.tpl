@@ -8,11 +8,20 @@
     <a href="<?=$base_path?>/pannelloAdmin/prodotto" class="btn btn-primary">Aggiungi un nuovo articolo</a>
 </p>
 <table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrizione</th>
+            <th>Prezzo</th>
+            <th></th>
+        </tr>
+    </thead>
     <?php foreach($prodotti as $prodotto):?>
         <tr>
             <td><?=$prodotto['nome']?></td>
             <td><?=$prodotto['descrizione']?></td>
             <td><?=$prodotto['prezzo']?></td>
+            <td><a href="<?=$base_path?>/pannelloAdmin/prodotto/<?=$prodotto['id']?>/delete" class="icon icon-delete"></a></td>
         </tr>
     <?php endforeach;?>
 </table>

@@ -43,4 +43,12 @@ class ProdottoRepository{
             'genere' => $data['genere']
         ]);
     }
+
+    public static function cancellaProdotto(int $id){
+        $pdo = Connection::getInstance();
+        $risposta = $pdo->prepare('DELETE FROM prodotto WHERE id = :id');
+        $risposta->execute([
+            'id' => $id,
+        ]);
+    }
 }
