@@ -6,9 +6,9 @@
 
 <html lang="it">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <link rel="stylesheet" href="<?=$base_path?>/css/spectre.min.css">
+    <link rel="stylesheet" href="<?=$base_path?>/css/spectre-exp.min.css">
+    <link rel="stylesheet" href="<?=$base_path?>/css/spectre-icons.min.css">
     <title><?=$title?></title>
 </head>
 <body>
