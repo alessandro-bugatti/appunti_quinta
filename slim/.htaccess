@@ -1,2 +1,9 @@
 RewriteEngine On
+
+#Queste prime due righe servono per servire gli assets, in pratica
+#istruiscono Apache a restituire un file se esiste, piuttosto che girare
+#la richiesta a index.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ public/index.php [QSA,L]
+
