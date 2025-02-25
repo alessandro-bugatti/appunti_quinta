@@ -111,4 +111,8 @@ $app->post('/pannelloAdmin/prodotto', AdminController::class . ':aggiungiProdott
 
 $app->get('/pannelloAdmin/prodotto/{id}/delete', AdminController::class . ':cancellaProdotto');
 
+$app->get('/pannelloAdmin/prodotto/{id}/update', AdminController::class . ':formUpdateProdotto');
+
+$app->post('/pannelloAdmin/prodotto/{id}/update', AdminController::class . ':aggiornaProdotto');
+
 $app->run();

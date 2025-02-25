@@ -1,5 +1,7 @@
 <?php
-/** @var $prodotti */
+/** @var $prodotti
+ * @var $base_path
+ * */
 ?>
 <?php $this->layout('home', ['title' => 'Prodotti']) ?>
 
@@ -14,6 +16,7 @@
             <th>Descrizione</th>
             <th>Prezzo</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <?php foreach($prodotti as $prodotto):?>
@@ -21,7 +24,8 @@
             <td><?=$prodotto['nome']?></td>
             <td><?=$prodotto['descrizione']?></td>
             <td><?=$prodotto['prezzo']?></td>
-            <td><a href="<?=$base_path?>/pannelloAdmin/prodotto/<?=$prodotto['id']?>/delete" class="icon icon-delete"></a></td>
+            <td><a href="<?=$base_path?>/pannelloAdmin/prodotto/<?=$prodotto['id']?>/update" class="icon icon-edit"></a></td>
+            <td><a href="<?=$base_path?>/pannelloAdmin/prodotto/<?=$prodotto['id']?>/delete" class="icon icon-delete" onclick="return confirm('Sicuro di eliminare il prodotto?')"></a></td>
         </tr>
     <?php endforeach;?>
 </table>

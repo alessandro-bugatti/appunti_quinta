@@ -51,4 +51,26 @@ class ProdottoRepository{
             'id' => $id,
         ]);
     }
+
+    public static function getProdottoByID(int $id)
+    {
+        $pdo = Connection::getInstance();
+        $risposta = $pdo->prepare('SELECT * FROM prodotto WHERE id = :id');
+        $risposta->execute([
+            'id' => $id
+        ]);
+        return $risposta->fetch();
+    }
+
+    public static function aggiornaProdotto(array $data, int $id){
+        $pdo = Connection::getInstance();
+        $risposta = $pdo->prepare('UPDATE prodotto SET nome = :nome, descrizione = :descrizione, prezzo = :prezzo, genere = :genere WHERE id = :id');
+        $risposta->execute([
+            'nome' => $data['nome'],
+            'descrizione' => $data['descrizione'],
+            'prezzo' => $data['prezzo'],
+            'genere' => $data['genere'],
+            'id' => $id
+        ]);
+    }
 }
