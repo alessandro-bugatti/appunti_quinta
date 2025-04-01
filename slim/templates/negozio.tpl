@@ -1,16 +1,14 @@
 <?php
-/** @var $prodotti */
+/** @var $genere
+ * @var $prodotti
+ */
 ?>
-<?php $this->layout('home', ['title' => 'Prodotti']) ?>
+<?php $this->layout('home', ['title' => 'Negozio']) ?>
 
-<h1>Lista dei prodotti</h1>
-
-<table class="table">
-    <?php foreach($prodotti as $prodotto):?>
-        <tr>
-            <td><?=$prodotto['nome']?></td>
-            <td><?=$prodotto['descrizione']?></td>
-            <td><?=$prodotto['prezzo']?></td>
-        </tr>
+    <h1>Esempio negozio con pattern MVC</h1>
+    <h2>Lista dei prodotti: <?=$genere?></h2>
+    <ul>
+    <?php foreach ($prodotti as $prodotto): ?>
+        <li><a href="<?=$base_path?>/negozio/prodotto/<?=$prodotto['id']?>"> <?=$prodotto['nome']?></a>: <i><?=$prodotto['descrizione']?></i></li>
     <?php endforeach;?>
-</table>
+    </ul>

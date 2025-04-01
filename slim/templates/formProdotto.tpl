@@ -5,7 +5,8 @@
 
 <h1>Inserimento di un nuovo prodotto</h1>
 
-<form class="form-horizontal" method="post" action="<?=$base_path?>/pannelloAdmin/prodotto">
+<form enctype="multipart/form-data" class="form-horizontal" action="<?=$base_path?>/admin/prodotto<?=isset($prodotto['id'])?'/'.$prodotto['id']:''?>" method="post">
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
     <div class="form-group">
         <div class="col-3 col-sm-12">
             <label class="form-label" for="name">Nome</label>
@@ -40,6 +41,16 @@
                 <option>Uomo</option>
             </select>
         </div>
+    </div>
+    <div class="form-group">
+        <div class="col-3 col-sm-12">
+            <label class="form-label" for="immagine"></label>
+        </div>
+        <div class="col-9 col-sm-12">
+            <input class="form-input" type="file"
+                   id="immagine" name="immagine">
+        </div>
+
     </div>
     <div class="form-group">
     <div class="col-3 col-ml-auto">

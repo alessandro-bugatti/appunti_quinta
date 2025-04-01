@@ -33,15 +33,17 @@ class ProdottoRepository{
         return $risposta->fetchAll();
     }
 
-    public static function aggiungiProdotto(array $data){
+    public static function add(array $data){
         $pdo = Connection::getInstance();
-        $risposta = $pdo->prepare('INSERT INTO prodotto (nome, descrizione, prezzo, genere) VALUES (:nome, :descrizione, :prezzo, :genere)');
+        $risposta = $pdo->prepare('INSERT INTO prodotto (nome, descrizione,prezzo, genere, image) VALUES (:nome, :descrizione, :prezzo, :genere, :image)');
         $risposta->execute([
-           'nome' => $data['nome'],
-            'descrizione' => $data['descrizione'],
-            'prezzo' => $data['prezzo'],
-            'genere' => $data['genere']
-        ]);
+                'nome' => $data['nome'],
+                'descrizione' => $data['descrizione'],
+                'prezzo' => $data['prezzo'],
+                'genere' => $data['genere'],
+                'image' => $data['image']
+            ]
+        );
     }
 
     public static function cancellaProdotto(int $id){

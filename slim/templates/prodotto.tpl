@@ -22,6 +22,6 @@
         <?=$prodotto['descrizione']?>
     </div>
     <div class="card-footer">
-        <a href="<?=$base_path?>/negozio">Torna al negozio</a>
+        <a href="<?=$base_path?>/elenco">Torna al negozio</a>
     </div>
 </div>

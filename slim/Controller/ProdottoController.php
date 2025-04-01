@@ -42,4 +42,17 @@ class ProdottoController{
         $response->getBody()->write($html);
         return $response;
     }
+
+    public function showProdotto(Request $request, Response $response, array $args): Response
+    {
+        $engine = $this->container->get('template');
+        $prodotto = ProdottoRepository::getProdottoByID($args['id']);
+        $response->getBody()->write($engine->render('prodotto',
+            [
+                'prodotto' => $prodotto,
+
+            ]
+        ));
+        return $response;
+    }
 }

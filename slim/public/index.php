@@ -24,6 +24,8 @@ $container->set('template', function (){
    return $engine;
 });
 
+$container->set('images', IMAGES);
+
 // Define Custom Error Handler
 $customErrorHandler = function (
     Request $request,
@@ -114,5 +116,7 @@ $app->get('/pannelloAdmin/prodotto/{id}/delete', AdminController::class . ':canc
 $app->get('/pannelloAdmin/prodotto/{id}/update', AdminController::class . ':formUpdateProdotto');
 
 $app->post('/pannelloAdmin/prodotto/{id}/update', AdminController::class . ':aggiornaProdotto');
+
+$app->get('/negozio/prodotto[/{id}]', ProdottoController::class . ':showProdotto');
 
 $app->run();
