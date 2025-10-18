@@ -30,5 +30,23 @@ $squadra = [
     ]
 ];
 
+$giocatori = $squadra['giocatori'];
+
+
 header('Content-type: application/json');
-echo json_encode($squadra);
+
+if(isset($_GET['numero'])){
+    $numero = $_GET['numero'];
+    if(array_key_exists($numero, $giocatori)){
+        echo json_encode($giocatori[$numero]);
+    }
+    else{
+        echo json_encode(['errore' => 'giocatore non presente']);
+    }
+}
+else{
+    echo json_encode($giocatori);
+}
+
+
+
