@@ -10,7 +10,7 @@
     <dia:attribute name="paper">
       <dia:composite type="paper">
         <dia:attribute name="name">
-          <dia:string>#A4#</dia:string>
+          <dia:string>#A5#</dia:string>
         </dia:attribute>
         <dia:attribute name="tmargin">
           <dia:real val="2.8222"/>
@@ -28,7 +28,7 @@
           <dia:boolean val="true"/>
         </dia:attribute>
         <dia:attribute name="scaling">
-          <dia:real val="1"/>
+          <dia:real val="2"/>
         </dia:attribute>
         <dia:attribute name="fitto">
           <dia:boolean val="false"/>
@@ -88,6 +88,7 @@
       </dia:composite>
     </dia:attribute>
   </dia:diagramdata>
+  <dia:layer name="Sfondo" visible="true" connectable="false"/>
   <dia:layer name="Sfondo" visible="true" connectable="false"/>
   <dia:layer name="Sfondo" visible="true" connectable="true" active="true">
     <dia:object type="ER - Entity" version="0" id="O0">
