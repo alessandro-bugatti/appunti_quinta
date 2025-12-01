@@ -11,7 +11,19 @@
     ```sql
     CREATE DATABASE nome_db;
     ```
-tramite la console che si apre nell'editor
+    tramite la console che si apre nell'editor
 5. Impostare la console al database che si intende utilizzare tramite il menù a tendina in alto a destra.
 6. Dare le istruzioni che consentono di creare le tabelle ed eventualmente popolarle, oppure importare il DB di interesse.
-7. Ha senso esportare il database per tenerne una copia versionabile
+7. Ha senso esportare il database per tenerne una copia versionabile. Per collegarsi con il database in esecuzione nel container Docker, come prima cosa si verifica se la connessione è attiva, lanciando il seguente comando da console
+   ```bash
+    docker exec -it lamp_db mysql -u root -p
+    ```
+   Se tutto ha funzionato correttamente, si può procedere con l'esportazione, utilizzando il comando
+   ```bash
+   docker exec lamp_db mysqldump -u root -prootpassword tennis > tennis-2025-12-01.sql
+    ```
+   Se tutto è andato bene, nella cartella del progetto dovrebbe esserci un file chiamato `tennis-2025-12-01.sql`
+   
+8. A questo punto creiamo un file `index.php`, all'interno del quale si inseriscano le solite istruzione per utilizzare Slim. Prima di procedere con la scrittura delle operazioni sul database, si crei un file di configurazione.
+9. Creare una cartella `conf` all'interno del progetto. Al suo interno creare un file `config.php`
+   
