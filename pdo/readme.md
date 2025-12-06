@@ -26,4 +26,9 @@
    
 8. A questo punto creiamo un file `index.php`, all'interno del quale si inseriscano le solite istruzione per utilizzare Slim. Prima di procedere con la scrittura delle operazioni sul database, si crei un file di configurazione.
 9. Creare una cartella `conf` all'interno del progetto. Al suo interno creare un file `config.php`
+10. Rispetto alla versione iniziale, il contenuto del file `index.php` deve contenere le istruzioni per connettersi al database tramite la libreria PDO (guardare il file `index.php` in questa cartella per vedere come è fatto)
+11. A questo punto è necessario fare il *deployment* per testare il funzionamento dell'applicazione. Supponendo di avere già la cartella `vendor` nella root del server Web, è sufficiente fare il `deployment` dei file `index.php`, `.htaccess` e `conf/config.php`.
+12. Infine, per controllare che tutto funzioni, è sufficiente connettersi con il proprio browser all'indirizzo `http://localhost:9080/tennis/tennisti`, e dovrebbe apparire qualcosa come questo
+
+![](esempio.png "Esempio di applicazione")
    
