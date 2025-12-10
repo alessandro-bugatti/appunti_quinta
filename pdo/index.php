@@ -25,13 +25,13 @@ $app->get('/tennisti', function (Request $request,
     //Costruzione dell'oggetto che rappresenta con connessione al DBMS
     $pdo = new PDO($dsn, DB_USER, DB_PASS,);
 
-    //Impostiamo la "forma" dei dati che verranno resituiti da una
+    //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     //IL modo più semplice per inviare una query al DB è di utilizzare
     //il metodo query. Per le query costanti è OK
-    $stmt = $pdo->query ("SELECT * FROM tennista");
+    $stmt = $pdo->query ("SELECT nome, cognome FROM tennista ORDER BY cognome");
 
     //Chiamando il metodo fetchAll vengono recuperati e restituiti
     //tutti le righe della tabella tennista
