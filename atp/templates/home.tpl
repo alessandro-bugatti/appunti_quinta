@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?=$this->e($titolo)?></title>
+    <!-- Pico.css classless -->
+    <link rel="stylesheet" href="css/pico.classless.min.css">
+</head>
+<body>
+<!--Questa parte sarà sempre così e serve a includere
+il template che contiene il contenuto vero e proprio-->
+<?=$this->section('content')?>
+
+<footer>
+    <p>
+        2026 – Esempio di utilizzo dei template<br>
+        <small>Made with Plates</small>
+    </p>
+</footer>
+</body>
+</html>
+
