@@ -50,7 +50,7 @@ $app->get('/tennisti/{id}', function (Request $request,
             'player_url' => $player['player_url'],
         ]);
     }else{
-        $pagina = $templates->render('player', [] );
+        $pagina = $templates->render('no_data', [] );
     }
 
     $response->getBody()->write($pagina);
@@ -91,7 +91,7 @@ $app->get('/tennisti/altezza/{altezza}', function (Request $request,
             'players' => $players,
         ]);
     }else{
-        $pagina = $templates->render('player', [] );
+        $pagina = $templates->render('no_data', [] );
     }
 
     $response->getBody()->write($pagina);

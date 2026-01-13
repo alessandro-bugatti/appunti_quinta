@@ -9,6 +9,7 @@
 </head>
 <body>
 <main>
+    <h1>Sito ATP</h1>
 <!--Questa parte sarà sempre così e serve a includere
 il template che contiene il contenuto vero e proprio-->
 <?=$this->section('content')?>
