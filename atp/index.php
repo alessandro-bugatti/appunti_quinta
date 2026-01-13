@@ -33,21 +33,25 @@ $app->get('/tennisti/{id}', function (Request $request,
 
     //IL modo più semplice per inviare una query al DB è di utilizzare
     //il metodo query. Per le query costanti è OK
-    $stmt = $pdo->prepare('SELECT * FROM players WHERE player_id = ?');
+    $stmt = $pdo->prepare('SELECT * FROM players WHERE player_id = :id');
 
-    $stmt->execute([$args['id']]);
+    $stmt->execute(['id' => $args['id']]);
 
     $player = $stmt->fetch();
 
     $templates = new Engine('templates','tpl');
 
-    $pagina = $templates->render('player',[
-        'first_name' => $player['first_name'],
-        'last_name' => $player['last_name'],
-        'birthplace' => $player['birthplace'],
-        'height_cm' => $player['height_cm'],
-        'player_url' => $player['player_url'],
-    ]);
+    if($player) {
+        $pagina = $templates->render('player', [
+            'first_name' => $player['first_name'],
+            'last_name' => $player['last_name'],
+            'birthplace' => $player['birthplace'],
+            'height_cm' => $player['height_cm'],
+            'player_url' => $player['player_url'],
+        ]);
+    }else{
+        $pagina = $templates->render('player', [] );
+    }
 
     $response->getBody()->write($pagina);
     return $response;
@@ -56,6 +60,42 @@ $app->get('/tennisti/{id}', function (Request $request,
     //$response->getBody()->write(json_encode($stmt->fetchAll()));
     //return $response
     //    ->withHeader('Content-Type', 'application/json');
+});
+
+//Esempio di rotta che prende i suoi dati dal database
+$app->get('/tennisti/altezza/{altezza}', function (Request $request,
+                                      Response $response,
+                                      array $args): Response {
+    //Stringa di connessione al database DSN - Data Source Name
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+
+    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
+    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
+
+    //Impostiamo la "forma" dei dati che verranno restituiti da una
+    //query come delle mappe associative
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    //IL modo più semplice per inviare una query al DB è di utilizzare
+    //il metodo query. Per le query costanti è OK
+    $stmt = $pdo->prepare('SELECT * FROM players WHERE height_cm > :altezza');
+
+    $stmt->execute(['altezza' => $args['altezza']]);
+
+    $players = $stmt->fetchAll();
+
+    $templates = new Engine('templates','tpl');
+
+    if($players) {
+        $pagina = $templates->render('playersHeight', [
+            'players' => $players,
+        ]);
+    }else{
+        $pagina = $templates->render('player', [] );
+    }
+
+    $response->getBody()->write($pagina);
+    return $response;
 });
 
 $app->run();
