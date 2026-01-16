@@ -1,6 +1,14 @@
+<?php
+    /** Variabili iniettate
+     * @var $players
+     * @var $basepath
+     * @var $altezza
+     */
+?>
+
 <?php $this->layout('home', ['titolo' => 'ATP players con altezza']) ?>
 
-<h2>Giocatori</h2>
+<h2>Giocatori con altezza maggiore o uguale a <?=$this->e($altezza)?></h2>
 
 <table>
     <thead>
@@ -13,7 +21,7 @@
     <tr>
         <td><?=$this->e($player['first_name']);?></td>
         <td><?=$this->e($player['last_name']);?></td>
-        <td><a href="/atp/tennisti/<?=$this->e($player['player_id']);?>">Vai alla pagina del giocatore</td>
+        <td><a href="<?=$this->e($basepath)?>/tennisti/<?=$this->e($player['player_id']);?>">Vai alla pagina del giocatore</td>
     </tr>
     <?php endforeach; ?>
     </tbody>

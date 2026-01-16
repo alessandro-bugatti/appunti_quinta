@@ -14,7 +14,20 @@ require 'conf/config.php';
 $app = AppFactory::create();
 
 //Istruzione super importante per il deployment
-$app->setBasePath('/atp');
+$app->setBasePath(BASEPATH);
+
+
+//Pagina di accesso
+$app->get('/', function (Request $request,
+                                      Response $response,
+                                      array $args): Response {
+    $templates = new Engine('templates','tpl');
+    $pagina = $templates->render('rotte', [
+        'basepath' => BASEPATH,
+    ]);
+    $response->getBody()->write($pagina);
+    return $response;
+});
 
 
 //Esempio di rotta che prende i suoi dati dal database
@@ -48,6 +61,7 @@ $app->get('/tennisti/{id}', function (Request $request,
             'birthplace' => $player['birthplace'],
             'height_cm' => $player['height_cm'],
             'player_url' => $player['player_url'],
+            'player_id' => $player['player_id'],
         ]);
     }else{
         $pagina = $templates->render('no_data', [] );
@@ -61,6 +75,7 @@ $app->get('/tennisti/{id}', function (Request $request,
     //return $response
     //    ->withHeader('Content-Type', 'application/json');
 });
+
 
 //Esempio di rotta che prende i suoi dati dal database
 $app->get('/tennisti/altezza/{altezza}', function (Request $request,
@@ -89,6 +104,8 @@ $app->get('/tennisti/altezza/{altezza}', function (Request $request,
     if($players) {
         $pagina = $templates->render('playersHeight', [
             'players' => $players,
+            'basepath' => BASEPATH,
+            'altezza' => $args['altezza'],
         ]);
     }else{
         $pagina = $templates->render('no_data', [] );

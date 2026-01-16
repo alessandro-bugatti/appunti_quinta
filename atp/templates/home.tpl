@@ -16,6 +16,7 @@ il template che contiene il contenuto vero e proprio-->
 </main>
 
 <footer>
+    <p><a href="/atp">Torna alla pagina principale</a></p>
     <p>
         2026 – Esempio di utilizzo dei template<br>
         <small>Made with Plates</small>
