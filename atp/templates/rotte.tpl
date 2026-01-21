@@ -14,3 +14,5 @@
 
 <p><a href="<?=$this->e($basepath)?>/tennisti/altezza/200">Pagina che mostra i dati dei tennisti alti due metri o più</a></p>
 
+<p><a href="<?=$this->e($basepath)?>/ricerca/cognome">Pagina che permette di fare una ricerca per cognome</a></p>
+

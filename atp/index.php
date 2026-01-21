@@ -115,4 +115,54 @@ $app->get('/tennisti/altezza/{altezza}', function (Request $request,
     return $response;
 });
 
+$app->get('/ricerca/cognome', function (Request $request,
+                                         Response $response,
+                                         array $args): Response {
+    $players = [];
+
+    $templates = new Engine('templates','tpl');
+    $pagina = $templates->render('searchByLastname', [
+        'basepath' => BASEPATH,
+        'players' => $players,
+    ]);
+    $response->getBody()->write($pagina);
+    return $response;
+});
+
+
+//Pagina di accesso
+$app->post('/ricerca/cognome', function (Request $request,
+                         Response $response,
+                         array $args): Response {
+    //Stringa di connessione al database DSN - Data Source Name
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+
+    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
+    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
+
+    //Impostiamo la "forma" dei dati che verranno restituiti da una
+    //query come delle mappe associative
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    //IL modo più semplice per inviare una query al DB è di utilizzare
+    //il metodo query. Per le query costanti è OK
+    $stmt = $pdo->prepare('SELECT * FROM players WHERE LOWER(last_name) = LOWER(:lastname)');
+
+    $data = $request->getParsedBody();
+
+    $stmt->execute(['lastname' => $data['lastname']]);
+
+    $players = $stmt->fetchAll();
+
+
+    $templates = new Engine('templates','tpl');
+    $pagina = $templates->render('searchByLastname', [
+        'basepath' => BASEPATH,
+        'players' => $players,
+    ]);
+    $response->getBody()->write($pagina);
+    return $response;
+});
+
+
 $app->run();
