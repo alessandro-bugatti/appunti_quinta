@@ -7,6 +7,7 @@ use Slim\Factory\AppFactory;
 require '../vendor/autoload.php';
 
 use League\Plates\Engine;
+use Util\Connection;
 
 //Include il file di configurazione con le credenziali di accesso al database
 require 'conf/config.php';
@@ -34,11 +35,7 @@ $app->get('/', function (Request $request,
 $app->get('/tennisti/{id}', function (Request $request,
                          Response $response,
                          array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
+    $pdo = Connection::getInstance(BASEPATH);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
@@ -81,11 +78,7 @@ $app->get('/tennisti/{id}', function (Request $request,
 $app->get('/tennisti/altezza/{altezza}', function (Request $request,
                                       Response $response,
                                       array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
+    $pdo = Connection::getInstance(BASEPATH);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
@@ -134,11 +127,7 @@ $app->get('/ricerca/cognome', function (Request $request,
 $app->post('/ricerca/cognome', function (Request $request,
                          Response $response,
                          array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
+    $pdo = Connection::getInstance(BASEPATH);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
