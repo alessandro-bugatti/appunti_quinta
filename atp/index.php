@@ -38,12 +38,6 @@ $app->get('/tennisti/{id}', function (Request $request,
     global $config;
     $pdo = Connection::getInstance($config);
 
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-    //IL modo più semplice per inviare una query al DB è di utilizzare
-    //il metodo query. Per le query costanti è OK
     $stmt = $pdo->prepare('SELECT * FROM players WHERE player_id = :id');
 
     $stmt->execute(['id' => $args['id']]);
@@ -82,12 +76,6 @@ $app->get('/tennisti/altezza/{altezza}', function (Request $request,
     global $config;
     $pdo = Connection::getInstance($config);
 
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-    //IL modo più semplice per inviare una query al DB è di utilizzare
-    //il metodo query. Per le query costanti è OK
     $stmt = $pdo->prepare('SELECT * FROM players WHERE height_cm > :altezza');
 
     $stmt->execute(['altezza' => $args['altezza']]);
@@ -131,10 +119,6 @@ $app->post('/ricerca/cognome', function (Request $request,
                          array $args): Response {
     global $config;
     $pdo = Connection::getInstance($config);
-
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
     //IL modo più semplice per inviare una query al DB è di utilizzare
     //il metodo query. Per le query costanti è OK
