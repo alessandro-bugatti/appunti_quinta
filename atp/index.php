@@ -7,9 +7,10 @@ use Slim\Factory\AppFactory;
 require '../vendor/autoload.php';
 
 use League\Plates\Engine;
+use Util\Connection;
 
 //Include il file di configurazione con le credenziali di accesso al database
-require 'conf/config.php';
+$config = require 'conf/config.php';
 
 $app = AppFactory::create();
 
@@ -34,18 +35,9 @@ $app->get('/', function (Request $request,
 $app->get('/tennisti/{id}', function (Request $request,
                          Response $response,
                          array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+    global $config;
+    $pdo = Connection::getInstance($config);
 
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
-
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-    //IL modo più semplice per inviare una query al DB è di utilizzare
-    //il metodo query. Per le query costanti è OK
     $stmt = $pdo->prepare('SELECT * FROM players WHERE player_id = :id');
 
     $stmt->execute(['id' => $args['id']]);
@@ -81,18 +73,9 @@ $app->get('/tennisti/{id}', function (Request $request,
 $app->get('/tennisti/altezza/{altezza}', function (Request $request,
                                       Response $response,
                                       array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+    global $config;
+    $pdo = Connection::getInstance($config);
 
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
-
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-    //IL modo più semplice per inviare una query al DB è di utilizzare
-    //il metodo query. Per le query costanti è OK
     $stmt = $pdo->prepare('SELECT * FROM players WHERE height_cm > :altezza');
 
     $stmt->execute(['altezza' => $args['altezza']]);
@@ -134,15 +117,8 @@ $app->get('/ricerca/cognome', function (Request $request,
 $app->post('/ricerca/cognome', function (Request $request,
                          Response $response,
                          array $args): Response {
-    //Stringa di connessione al database DSN - Data Source Name
-    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-
-    //Costruzione dell'oggetto che rappresenta con connessione al DBMS
-    $pdo = new PDO($dsn, DB_USER, DB_PASS,);
-
-    //Impostiamo la "forma" dei dati che verranno restituiti da una
-    //query come delle mappe associative
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    global $config;
+    $pdo = Connection::getInstance($config);
 
     //IL modo più semplice per inviare una query al DB è di utilizzare
     //il metodo query. Per le query costanti è OK
