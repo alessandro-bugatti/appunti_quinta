@@ -27,6 +27,10 @@ class Connection
         if (!isset($pdo)) {
             $DSN = 'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'];
             $pdo = new PDO($DSN, $config['DB_USER'], $config['DB_PASS']);
+            //Impostiamo la "forma" dei dati che verranno restituiti da una
+            //query come delle mappe associative
+            $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
         }
         return $pdo;
     }
