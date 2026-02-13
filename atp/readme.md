@@ -34,3 +34,32 @@ $pdo = Connection::getInstance($config);
 ```
 
 La variabile globale `$config` verrà creata all'inizio del front-controller.
+
+## Come aggiungere il container
+
+Aggiungere nel file `composer.json` la riga
+```json
+"php-di/slim-bridge" : "*"
+```
+in modo che il file diventi
+
+```json
+{
+    "require": {
+        "league/plates": "^3.6",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.8",
+        "php-di/slim-bridge": "*"
+    },
+  "autoload": {
+    "psr-4": {
+      "Util\\": "Util/"
+    }
+  }
+}
+```
+
+e poi eseguire il comando
+```shell
+docker-compose run --rm composer update
+```

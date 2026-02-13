@@ -5,17 +5,34 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
 require '../vendor/autoload.php';
+require 'Controller/TennistaController.php';
 
 use League\Plates\Engine;
 use Util\Connection;
+use Controller\TennistaController;
+use DI\Container as Container;
+
 
 //Include il file di configurazione con le credenziali di accesso al database
 $config = require 'conf/config.php';
+
+$container = new Container();
+
+// Da inserire prima della create di AppFactory
+AppFactory::setContainer($container);
+
 
 $app = AppFactory::create();
 
 //Istruzione super importante per il deployment
 $app->setBasePath(BASEPATH);
+
+$container->set('template', function (){
+    global $config;
+    $engine = new Engine('templates', 'tpl');
+    $engine->addData(['base_path' => $config['BASEPATH']]);
+    return $engine;
+});
 
 
 //Pagina di accesso
@@ -32,42 +49,7 @@ $app->get('/', function (Request $request,
 
 
 //Esempio di rotta che prende i suoi dati dal database
-$app->get('/tennisti/{id}', function (Request $request,
-                         Response $response,
-                         array $args): Response {
-    global $config;
-    $pdo = Connection::getInstance($config);
-
-    $stmt = $pdo->prepare('SELECT * FROM players WHERE player_id = :id');
-
-    $stmt->execute(['id' => $args['id']]);
-
-    $player = $stmt->fetch();
-
-    $templates = new Engine('templates','tpl');
-
-    if($player) {
-        $pagina = $templates->render('player', [
-            'first_name' => $player['first_name'],
-            'last_name' => $player['last_name'],
-            'birthplace' => $player['birthplace'],
-            'height_cm' => $player['height_cm'],
-            'player_url' => $player['player_url'],
-            'player_id' => $player['player_id'],
-        ]);
-    }else{
-        $pagina = $templates->render('no_data', [] );
-    }
-
-    $response->getBody()->write($pagina);
-    return $response;
-    //Chiamando il metodo fetchAll vengono recuperati e restituiti
-    //tutti le righe della tabella tennista
-    //$response->getBody()->write(json_encode($stmt->fetchAll()));
-    //return $response
-    //    ->withHeader('Content-Type', 'application/json');
-});
-
+$app->get('/tennisti/{id}', TennistaController::class . ':listById');
 
 //Esempio di rotta che prende i suoi dati dal database
 $app->get('/tennisti/altezza/{altezza}', function (Request $request,
