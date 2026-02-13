@@ -22,14 +22,11 @@ class Connection
 
     }
 
-    public static function getInstance($path): PDO
+    public static function getInstance($config): PDO
     {
-        //Include il file con i parametri di connessione
-        require_once '..' . $path .'/conf/config.php';
-
         if (!isset($pdo)) {
-            $DSN = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
-            $pdo = new PDO($DSN, DB_USER, DB_PASS);
+            $DSN = 'mysql:host=' . $config['DB_HOST'] . ';dbname=' . $config['DB_NAME'];
+            $pdo = new PDO($DSN, $config['DB_USER'], $config['DB_PASS']);
         }
         return $pdo;
     }

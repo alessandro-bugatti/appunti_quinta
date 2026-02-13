@@ -10,7 +10,7 @@ use League\Plates\Engine;
 use Util\Connection;
 
 //Include il file di configurazione con le credenziali di accesso al database
-require 'conf/config.php';
+$config = require 'conf/config.php';
 
 $app = AppFactory::create();
 
@@ -35,7 +35,8 @@ $app->get('/', function (Request $request,
 $app->get('/tennisti/{id}', function (Request $request,
                          Response $response,
                          array $args): Response {
-    $pdo = Connection::getInstance(BASEPATH);
+    global $config;
+    $pdo = Connection::getInstance($config);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
@@ -78,7 +79,8 @@ $app->get('/tennisti/{id}', function (Request $request,
 $app->get('/tennisti/altezza/{altezza}', function (Request $request,
                                       Response $response,
                                       array $args): Response {
-    $pdo = Connection::getInstance(BASEPATH);
+    global $config;
+    $pdo = Connection::getInstance($config);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative
@@ -127,7 +129,8 @@ $app->get('/ricerca/cognome', function (Request $request,
 $app->post('/ricerca/cognome', function (Request $request,
                          Response $response,
                          array $args): Response {
-    $pdo = Connection::getInstance(BASEPATH);
+    global $config;
+    $pdo = Connection::getInstance($config);
 
     //Impostiamo la "forma" dei dati che verranno restituiti da una
     //query come delle mappe associative

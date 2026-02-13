@@ -39,7 +39,7 @@
 # File di lock
 *.lock
 
-# Progetti esclusi
+# Esclusioni specifiche
 vendor/
 config.php
 webServers.xml
@@ -47,3 +47,4 @@ deployment.xml
 config.locale.php
 config.winnie.php
 config.locale.calvin.php
+*.xopp
