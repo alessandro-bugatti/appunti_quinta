@@ -22,7 +22,8 @@ class TennistaController{
     public function listById(Request $request, Response $response, array $args): Response
     {
         $engine = $this->container->get('template');
-        $player = TennistaRepository::getTennistaById($args['id']);
+        $tennistaRepository = new TennistaRepository($this->container->get('config'));
+        $player = $tennistaRepository->getTennistaById($args['id']);
         if ($player) {
             $pagina = $engine->render('player', [
                 'first_name' => $player['first_name'],

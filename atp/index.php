@@ -34,6 +34,8 @@ $container->set('template', function (){
     return $engine;
 });
 
+$container->set('config', $config);
+
 
 //Pagina di accesso
 $app->get('/', function (Request $request,
