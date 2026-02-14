@@ -25,7 +25,7 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 //Istruzione super importante per il deployment
-$app->setBasePath(BASEPATH);
+$app->setBasePath($config['BASEPATH']);
 
 $container->set('template', function (){
     global $config;

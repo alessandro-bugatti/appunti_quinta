@@ -38,6 +38,7 @@ La variabile globale `$config` verrà creata all'inizio del front-controller.
 ## Come aggiungere il container
 
 Aggiungere nel file `composer.json` la riga
+
 ```json
 "php-di/slim-bridge" : "*"
 ```
