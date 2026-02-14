@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php $this->layout('home', ['titolo' => 'No data']) ?>
+<?php $this->layout('home', ['titolo' => 'Home']) ?>
 
 <h2>Esercizi sul database del tennis, solo metodo GET</h2>
 
