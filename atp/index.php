@@ -16,6 +16,9 @@ use DI\Container as Container;
 //Include il file di configurazione con le credenziali di accesso al database
 $config = require 'conf/config.php';
 
+
+//Righe per creare un container per la DI
+//Deve essere creato prima di istanziare l'app
 $container = new Container();
 
 // Da inserire prima della create di AppFactory
@@ -27,6 +30,8 @@ $app = AppFactory::create();
 //Istruzione super importante per il deployment
 $app->setBasePath($config['BASEPATH']);
 
+
+//Passa l'oggetto Engine che viene istanziato qua
 $container->set('template', function (){
     global $config;
     $engine = new Engine('templates', 'tpl');
@@ -34,6 +39,7 @@ $container->set('template', function (){
     return $engine;
 });
 
+//Inserisco nel container le informazioni di configurazione
 $container->set('config', $config);
 
 
@@ -50,7 +56,8 @@ $app->get('/', function (Request $request,
 });
 
 
-//Esempio di rotta che prende i suoi dati dal database
+//Rotta che risponde a una GET sull'URL /tennisti/{id} chiamando il
+//metodo listById della classe TennistaController
 $app->get('/tennisti/{id}', TennistaController::class . ':listById');
 
 //Esempio di rotta che prende i suoi dati dal database

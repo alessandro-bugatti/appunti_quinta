@@ -62,5 +62,5 @@ in modo che il file diventi
 
 e poi eseguire il comando
 ```shell
-docker-compose run --rm composer update
+docker compose run --rm composer update
 ```
