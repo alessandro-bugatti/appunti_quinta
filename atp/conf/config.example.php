@@ -14,4 +14,5 @@ return [
     'DB_USER' => DB_USER,
     'DB_PASS' => DB_PASS,
     'BASEPATH' => BASEPATH,
+    'PRODUCTION' => true,
 ];

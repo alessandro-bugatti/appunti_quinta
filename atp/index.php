@@ -30,17 +30,71 @@ $app = AppFactory::create();
 //Istruzione super importante per il deployment
 $app->setBasePath($config['BASEPATH']);
 
+//Inserisco nel container le informazioni di configurazione
+$container->set('config', function () use ($config) {
+    return $config;
+});
 
-//Passa l'oggetto Engine che viene istanziato qua
-$container->set('template', function (){
-    global $config;
+//Inserisce l'oggetto template nel container
+$container->set('template', function ($container) {
+    $config = $container->get('config');
     $engine = new Engine('templates', 'tpl');
     $engine->addData(['base_path' => $config['BASEPATH']]);
     return $engine;
 });
 
-//Inserisco nel container le informazioni di configurazione
-$container->set('config', $config);
+
+//Esempio di gestione degli errori più strutturata
+
+$app->addRoutingMiddleware();
+
+
+//Custom Error Handler, per una gestione personalizzata
+$customErrorHandler = function (
+    Request $request,
+    Throwable $exception,
+    bool $displayErrorDetails,
+    bool $logErrors,
+    bool $logErrorDetails
+) use ($app) {
+    $payload = ['error' => $exception->getMessage()];
+
+    $response = $app->getResponseFactory()->createResponse();
+    $engine = $app->getContainer()->get('template');
+
+    if ($exception instanceof \Slim\Exception\HttpNotFoundException) {
+        $response->getBody()->write(
+            $engine->render('404', $payload)
+        );
+    }else if($exception instanceof HttpUnauthorizedException){
+        $response->getBody()->write(
+            "Utente non loggato"
+        );
+    }
+    else{
+        $response->getBody()->write(
+            $engine->render('oops', $payload)
+        );
+    }
+    return $response;
+};
+
+/**
+ * Add Error Middleware
+ *
+ * @param bool                  $displayErrorDetails -> Should be set to false in production
+ * @param bool                  $logErrors -> Parameter is passed to the default ErrorHandler
+ * @param bool                  $logErrorDetails -> Display error details in error log
+ * @param LoggerInterface|null  $logger -> Optional PSR-3 Logger
+ *
+ * Note: This middleware should be added last. It will not handle any exceptions/errors
+ * for middleware added after it.
+ */
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+//Se si è in produzione il gestore di default viene sostituito con quello personlalizzato
+if ($config['PRODUCTION']) {
+    $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
+}
 
 
 //Pagina di accesso
