@@ -44,7 +44,7 @@ $container->set('template', function ($container) {
 });
 
 
-//Esempio di gestione degli errori più strutturata
+//Esempio di gestione degli errori più strutturato
 
 $app->addRoutingMiddleware();
 
