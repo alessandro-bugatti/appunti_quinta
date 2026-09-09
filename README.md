@@ -1,0 +1,9 @@
+# Appunti delle lezioni della classe quinta Informatica
+
+Questo repository viene da me utilizzato per salvare in realtime, cioè durante una lezione, tutti i materiali che vengono prodotti. Per sua natura questi materiali non è detto che siano del tutto corretti/completi, in quanto prodotti attraverso l'interazione con gli studenti e con lo scopo di essere rivisti/corretti/completati tramite un lavoro di revisione casalingo. Le varie sottocartelle sono relative ai vari argomenti trattati, nella cartella archivio si trovano gli esercizi fatti negli anni passati.
+
+Sperando possa essere utile, auguri di buon lavoro.
+
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://github.com/alessandro-bugatti/appunti_quinta">Appunti quinta</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="www.imparando.net">Alessandro Bugatti</a> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" /></a></p>
+
+###### Use of this site’s content for AI training, data mining, or automated scraping is strictly prohibited.
