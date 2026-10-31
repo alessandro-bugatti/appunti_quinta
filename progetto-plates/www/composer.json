@@ -1,0 +1,25 @@
+{
+    "name": "didattica/nome-progetto",
+    "description": "Descrizione del progetto didattico",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Nome Cognome",
+            "email": "email@esempio.it"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "slim/slim": "^4.0",
+        "slim/psr7": "^1.0",
+        "php-di/php-di": "^7.0",
+        "league/plates": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controller\\": "src/Controller/",
+            "Model\\": "src/Model/",
+            "Util\\": "src/Util/"
+        }
+    }
+}
