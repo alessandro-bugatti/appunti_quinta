@@ -9,5 +9,8 @@ $template = new Engine('../templates', 'tpl');
 $numero = $_GET['numero'] ?? 1;
 
 echo $template->render('tabellina',
-        ['numero' => $numero]
+        [
+            'numero' => $numero,
+            'titolo' => 'Tabellina del ' . $numero,
+        ]
 );
