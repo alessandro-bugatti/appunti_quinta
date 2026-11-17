@@ -1,0 +1,23 @@
+# Ambiente - contiene credenziali, non va mai nel repository
+.env
+
+# Dipendenze PHP (si reinstallano con: docker exec <nome>_web composer install)
+www/vendor/
+
+# Storage: file caricati dagli utenti
+www/storage/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Log
+*.log
+
+# File PDF generati dalla documentazione markdown
+docs/*.pdf

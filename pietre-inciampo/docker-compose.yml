@@ -1,0 +1,41 @@
+services:
+
+  web:
+    image: didattica-php:latest          # immagine condivisa - nessun build per ogni progetto
+    container_name: ${PROJECT_NAME}_web
+    ports:
+      - "${PORT_HTTP}:80"
+      - "${PORT_HTTPS}:443"
+    volumes:
+      - ./www:/var/www/html              # codice del progetto; Apache espone solo /public
+      - storage_data:/var/www/html/storage
+    networks:
+      - app_network
+    depends_on:
+      - database
+    env_file:
+      - .env
+
+  database:
+    image: mariadb:10.11
+    container_name: ${PROJECT_NAME}_db
+    restart: always
+    ports:
+      - "${PORT_DB}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d   # script SQL eseguiti al primo avvio
+    networks:
+      - app_network
+    env_file:
+      - .env
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local
+  storage_data:
+    driver: local

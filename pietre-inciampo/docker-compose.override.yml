@@ -1,0 +1,16 @@
+# Questo file viene letto automaticamente da Docker Compose in locale.
+# Non va usato in produzione. Aggiunge servizi utili solo durante lo sviluppo.
+
+services:
+
+  # Adminer: interfaccia web per esplorare il database
+  adminer:
+    image: adminer
+    container_name: ${PROJECT_NAME}_adminer
+    restart: always
+    ports:
+      - "${PORT_ADMINER}:8080"
+    networks:
+      - app_network
+    depends_on:
+      - database
